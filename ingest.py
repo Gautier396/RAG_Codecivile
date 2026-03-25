@@ -31,7 +31,13 @@ def main():
 
     # 3. Découpage (Chunking)
     print("2. Découpage (Chunking)...")
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+    # Utilisation d'une expression régulière pour couper en priorité au début de chaque "Article "
+    text_splitter = RecursiveCharacterTextSplitter(
+        separators=[r"\n(?=Article )", r"\n\n", r"\n", " ", ""],
+        is_separator_regex=True,
+        chunk_size=4000,  # Assez grand pour englober la vaste majorité des articles entiers
+        chunk_overlap=200 # Sécurité si un article est exceptionnellement long et doit être coupé
+    )
     chunks = text_splitter.split_documents(documents)
     print(f"   -> {len(chunks)} fragments (chunks) créés.")
 
