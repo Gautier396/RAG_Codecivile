@@ -35,8 +35,8 @@ def main():
     text_splitter = RecursiveCharacterTextSplitter(
         separators=[r"\n(?=Article )", r"\n\n", r"\n", " ", ""],
         is_separator_regex=True,
-        chunk_size=4000,  # Assez grand pour englober la vaste majorité des articles entiers
-        chunk_overlap=200 # Sécurité si un article est exceptionnellement long et doit être coupé
+        chunk_size=1500,  # Réduit pour éviter de dépasser la limite de contexte du modèle d'embedding
+        chunk_overlap=150 # Adapté à la nouvelle taille
     )
     chunks = text_splitter.split_documents(documents)
     print(f"   -> {len(chunks)} fragments (chunks) créés.")
