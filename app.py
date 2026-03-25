@@ -22,6 +22,7 @@ def main():
     # 4. Prompt RAG
     template = """Tu es un assistant juridique expert en droit français. Utilise le contexte suivant tiré du Code civil pour répondre à la question.
     Si la réponse ne se trouve pas dans le contexte, dis simplement que tu ne sais pas, n'invente rien.
+    Cite toujours précisément le ou les numéros des articles sur lesquels tu te bases pour formuler ta réponse.
 
     Contexte : {context}
 
